@@ -23,16 +23,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
-        configureNav()
-        fetchProducts()
-    }
-    
-    func configureNav() {
+        title = "Products"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
-            action: nil)
+            action: #selector(addProduct))
+        
+        fetchProducts()
     }
     
     func fetchProducts() {
@@ -44,6 +41,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } catch {
             print("Error getting products: \(error)")
         }
+    }
+    
+    @objc func addProduct() {
+        navigationController?.pushViewController(AddProductViewController(), animated: true)
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
