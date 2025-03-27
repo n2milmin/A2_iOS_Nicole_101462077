@@ -27,14 +27,14 @@ class AddProductViewController: UIViewController, UITextFieldDelegate {
         providerTextField.delegate = self
     }
     
-    @IBAction func addBtn(_ sender: AnyObject) {
+    @IBAction func addBtn(_ sender: UIButton) {
         let name = nameTextField.text ?? "unknown"
         let desc = descTextField.text ?? "unknown"
-        let price = priceTextField.text ?? "0.0"
+        let priceText = priceTextField.text ?? "0.0"
         let provider = providerTextField.text ?? "unknown"
 
         guard let price = Double(priceText) else {
-            showAlert(title: "Invalid Input", message: "Price must be a valid number.")
+            print("Price must be numeric.")
             return
         }
         
@@ -51,7 +51,7 @@ class AddProductViewController: UIViewController, UITextFieldDelegate {
         do {
             try context.save()
             present(alert, animated: true)
-            self.navigationController?.popToRootViewController(animated: true)
+            self.dismiss(animated: true, completion:  nil)
         } catch {
             print("Something went wrong, please try again.")
         }

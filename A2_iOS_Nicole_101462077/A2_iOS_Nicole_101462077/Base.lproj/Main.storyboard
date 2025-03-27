@@ -26,6 +26,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GJF-Aq-Zv0">
                                 <rect key="frame" x="16" y="175" width="361" height="492"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Y3X-7i-Em8"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJL-w5-Q9c">
                                 <rect key="frame" x="120" y="717" width="153" height="41"/>
@@ -52,7 +55,13 @@
                             <constraint firstItem="YxS-UA-GAo" firstAttribute="trailing" secondItem="GJF-Aq-Zv0" secondAttribute="trailing" id="zoJ-6S-H8n"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="7Cz-gv-3Ha"/>
+                    <navigationItem key="navigationItem" id="7Cz-gv-3Ha">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="4qo-Cc-cFW">
+                            <connections>
+                                <action selector="addProduct:" destination="BYZ-38-t0r" id="Ngq-8K-E97"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="KJL-w5-Q9c" id="iUN-mY-gof"/>
                         <outlet property="searchBar" destination="YxS-UA-GAo" id="8bE-0N-wOe"/>
@@ -209,6 +218,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
