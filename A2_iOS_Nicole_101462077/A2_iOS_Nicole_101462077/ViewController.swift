@@ -25,7 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         searchBar.delegate = self
         title = "Products"
-        
+
+        insertSampleData()
         fetchProducts()
     }
     
@@ -33,6 +34,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewWillAppear(animated)
         fetchProducts()
     }
+
+    func insertSampleData(context: NSManagedObjectContext) {
+    let sampleProducts = [
+        (id: UUID(), name: "Laptop", desc: "High-performance laptop", price: 1200.0, provider: "TechStore"),
+        (id: UUID(), name: "Smartphone", desc: "Latest model smartphone", price: 900.0, provider: "PhoneHub"),
+        (id: UUID(), name: "Headphones", desc: "Noise-canceling headphones", price: 250.0, provider: "AudioMax"),
+        (id: UUID(), name: "Smartwatch", desc: "Fitness tracking smartwatch", price: 300.0, provider: "GadgetWorld")
+    ]
+    
+    for item in sampleProducts {
+        let product = Product(context: context)
+        product.id = item.id
+        product.name = item.name
+        product.desc = item.desc
+        product.price = item.price
+        product.provider = item.provider
+    }
+}
     
     func fetchProducts() {
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
