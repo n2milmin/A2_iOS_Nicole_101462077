@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class AddProductViewController: UIViewController {
+class AddProductViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet var nameTextField: UITextField!
@@ -21,6 +21,10 @@ class AddProductViewController: UIViewController {
         super.viewDidLoad()
         title = "Add Product"
                 
+        nameTextField.delegate = self
+        descTextField.delegate = self
+        priceTextField.delegate = self
+        providerTextField.delegate = self
     }
     
     @IBAction func addBtn(_ sender: AnyObject) {
@@ -28,13 +32,18 @@ class AddProductViewController: UIViewController {
         let desc = descTextField.text ?? "unknown"
         let price = priceTextField.text ?? "0.0"
         let provider = providerTextField.text ?? "unknown"
+
+        guard let price = Double(priceText) else {
+            showAlert(title: "Invalid Input", message: "Price must be a valid number.")
+            return
+        }
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
+       let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let product = Product(context: context)
+        product.id = UUID()
         product.name = name
         product.desc = desc
-        product.price = Double(price) ?? 0
+        product.price = price
         product.provider = provider
         
         let alert = UIAlertController(title: "Success", message: "Product added!", preferredStyle: .alert)
@@ -42,9 +51,14 @@ class AddProductViewController: UIViewController {
         do {
             try context.save()
             present(alert, animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         } catch {
             print("Something went wrong, please try again.")
         }
     }
-    
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
