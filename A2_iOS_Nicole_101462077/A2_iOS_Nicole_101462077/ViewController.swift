@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         searchBar.delegate = self
         title = "Products"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
             action: #selector(addProduct))
@@ -44,7 +44,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func addProduct() {
-        navigationController?.pushViewController(AddProductViewController(), animated: true)
+        let vc = AddProductViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
