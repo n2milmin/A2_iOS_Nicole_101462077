@@ -12,7 +12,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton : UIButton!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -28,12 +27,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         title = "Products"
 
 //        insertSampleData(context: context)
-        fetchProducts()
+        fetchProducts(context: context)
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchProducts()
+        fetchProducts(context: context)
     }
 
 //    func insertSampleData(context: NSManagedObjectContext) {
@@ -55,17 +55,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        
 //        do {
 //            try context.save()
+//            print("SAVE INSERT")
 //        } catch {
-//            print("FUCKNO")
+//            print("Save insert failed \(error.localizedDescription)")
 //        }
 //}
     
-    func fetchProducts() {
+    func fetchProducts(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        fetchRequest.relationshipKeyPathsForPrefetching = ["name", "desc", "price", "provider"]
         
         do{
             products = try context.fetch(fetchRequest)
+            print("Products: \(products)")
             displayProducts = products
+            print("Displayed products \(displayProducts)")
             tableView.reloadData()
         } catch {
             print("Error getting products: \(error)")
@@ -73,14 +77,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Displayed products count: \(displayProducts.count)")
         return displayProducts.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt index: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: index)
-        let product = displayProducts[index.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+        let product = displayProducts[indexPath.row]
         cell.textLabel?.text = product.name
-        cell.detailTextLabel?.text = product.desc
+        cell.detailTextLabel?.text = "Description: \(product.desc) \nPrice: \(product.price) \nProvider \(product.provider)"
         return cell
     }
     
@@ -103,6 +108,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addTextField{textField in textField.placeholder = "Provider"
             textField.keyboardType = .default}
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
         let saveAction = UIAlertAction(title: "Save", style: .default) {
             [unowned self] action in
             guard let name = alert.textFields?[0].text,
@@ -113,22 +120,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             let newProduct = Product(context: context)
+            newProduct.id = UUID()
             newProduct.name = name
             newProduct.desc = desc
             newProduct.price = Double(price) ?? 0
             newProduct.provider = provider
             
+            products.append(newProduct)
+            
             do {
                 try context.save()
+                print("Saved new product")
+                fetchProducts(context: context)
                 tableView.reloadData()
             } catch {
                 let errorAlert = UIAlertController(title: "Error", message: "Something went wrong, please try again.", preferredStyle: .alert)
+                errorAlert.addAction(cancelAction)
                 self.present(errorAlert, animated: true)
             }
         }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
+                
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         
