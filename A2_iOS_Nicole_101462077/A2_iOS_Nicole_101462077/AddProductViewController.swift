@@ -20,10 +20,10 @@ class AddProductViewController: UIViewController {
                 
     }
     
-    @IBAction func addBtn(_ sender: UIButton) {
+    @IBAction func addBtn(_ sender: AnyObject) {
         let name = textFields[0].text ?? "unknown"
         let desc = textFields[1].text ?? "unknown"
-        let price = textFields[2].text ?? "0.00"
+        let price = textFields[2].text ?? "0.0"        
         let provider = textFields[3].text ?? "unknown"
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -34,11 +34,18 @@ class AddProductViewController: UIViewController {
         product.price = Double(price) ?? 0
         product.provider = provider
         
+        let alert = UIAlertController(title: "Success", message: "Product added!", preferredStyle: .alert)
+        
         do {
             try context.save()
-            print("Product added!")
+            self.present(alert, animated: true) {
+                for field in self.textFields{
+                    field.text = ""
+                }
+            }
         } catch {
             print("Something went wrong, please try again.")
         }
     }
+    
 }
