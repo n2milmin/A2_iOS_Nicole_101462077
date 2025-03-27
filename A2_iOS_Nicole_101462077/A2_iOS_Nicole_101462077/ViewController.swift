@@ -5,6 +5,7 @@
 //  Created by Nicole Milmine on 2025-03-26.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -63,21 +64,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func fetchProducts(context: NSManagedObjectContext) {
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
-        fetchRequest.relationshipKeyPathsForPrefetching = ["name", "desc", "price", "provider"]
         
         do{
             products = try context.fetch(fetchRequest)
             print("Products: \(products)")
             displayProducts = products
             print("Displayed products \(displayProducts)")
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         } catch {
             print("Error getting products: \(error)")
         }
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Displayed products count: \(displayProducts.count)")
+        print("Displayed products count: \(displayProducts)")
         return displayProducts.count
     }
     
@@ -85,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
         let product = displayProducts[indexPath.row]
         cell.textLabel?.text = product.name
-        cell.detailTextLabel?.text = "Description: \(product.desc) \nPrice: \(product.price) \nProvider \(product.provider)"
+//        cell.detailTextLabel?.text = "Description: \(product.desc) \nPrice: \(product.price) \nProvider \(product.provider)"
         return cell
     }
     
@@ -132,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 try context.save()
                 print("Saved new product")
                 fetchProducts(context: context)
-                tableView.reloadData()
+                self.tableView.reloadData()
             } catch {
                 let errorAlert = UIAlertController(title: "Error", message: "Something went wrong, please try again.", preferredStyle: .alert)
                 errorAlert.addAction(cancelAction)
