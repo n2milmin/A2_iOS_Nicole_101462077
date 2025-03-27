@@ -17,6 +17,7 @@
 		B232DEE72D94AE3B00E1934C /* A2_iOS_Nicole_101462077Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B232DEE62D94AE3B00E1934C /* A2_iOS_Nicole_101462077Tests.swift */; };
 		B232DEF12D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B232DEF02D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITests.swift */; };
 		B232DEF32D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B232DEF22D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITestsLaunchTests.swift */; };
+		B24895CC2D958742008A10B6 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24895CB2D958742008A10B6 /* AddProductViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B232DEEC2D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A2_iOS_Nicole_101462077UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B232DEF02D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2_iOS_Nicole_101462077UITests.swift; sourceTree = "<group>"; };
 		B232DEF22D94AE3B00E1934C /* A2_iOS_Nicole_101462077UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2_iOS_Nicole_101462077UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B24895CB2D958742008A10B6 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				B232DECC2D94AE3900E1934C /* AppDelegate.swift */,
 				B232DECE2D94AE3900E1934C /* SceneDelegate.swift */,
 				B232DED02D94AE3900E1934C /* ViewController.swift */,
+				B24895CB2D958742008A10B6 /* AddProductViewController.swift */,
 				B232DED22D94AE3900E1934C /* Main.storyboard */,
 				B232DED82D94AE3A00E1934C /* Assets.xcassets */,
 				B232DEDA2D94AE3A00E1934C /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			files = (
 				B232DED12D94AE3900E1934C /* ViewController.swift in Sources */,
 				B232DED72D94AE3900E1934C /* A2_iOS_Nicole_101462077.xcdatamodeld in Sources */,
+				B24895CC2D958742008A10B6 /* AddProductViewController.swift in Sources */,
 				B232DECD2D94AE3900E1934C /* AppDelegate.swift in Sources */,
 				B232DECF2D94AE3900E1934C /* SceneDelegate.swift in Sources */,
 			);
