@@ -12,7 +12,10 @@ import CoreData
 class AddProductViewController: UIViewController {
     
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var descTextField: UITextField!
+    @IBOutlet var priceTextField: UITextField!
+    @IBOutlet var providerTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +24,10 @@ class AddProductViewController: UIViewController {
     }
     
     @IBAction func addBtn(_ sender: AnyObject) {
-        let name = textFields[0].text ?? "unknown"
-        let desc = textFields[1].text ?? "unknown"
-        let price = textFields[2].text ?? "0.0"        
-        let provider = textFields[3].text ?? "unknown"
+        let name = nameTextField.text ?? "unknown"
+        let desc = descTextField.text ?? "unknown"
+        let price = priceTextField.text ?? "0.0"
+        let provider = providerTextField.text ?? "unknown"
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
@@ -38,11 +41,7 @@ class AddProductViewController: UIViewController {
         
         do {
             try context.save()
-            self.present(alert, animated: true) {
-                for field in self.textFields{
-                    field.text = ""
-                }
-            }
+            present(alert, animated: true)
         } catch {
             print("Something went wrong, please try again.")
         }

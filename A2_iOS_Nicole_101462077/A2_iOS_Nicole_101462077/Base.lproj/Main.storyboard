@@ -132,10 +132,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzK-gT-77L">
-                                <rect key="frame" x="110" y="449" width="173" height="38"/>
+                                <rect key="frame" x="110" y="449" width="173" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="173" id="jzc-U0-aBk"/>
-                                    <constraint firstAttribute="height" constant="38" id="yEO-CJ-RON"/>
+                                    <constraint firstAttribute="height" constant="40" id="yEO-CJ-RON"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add Product">
@@ -147,7 +147,6 @@
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <constraints>
                             <constraint firstItem="Hpn-M6-h2Z" firstAttribute="top" secondItem="7rf-58-n22" secondAttribute="bottom" constant="43" id="3CW-mh-SMj"/>
-                            <constraint firstItem="tbA-iD-7jq" firstAttribute="bottom" secondItem="FzK-gT-77L" secondAttribute="bottom" constant="152" id="4ey-fO-NSm"/>
                             <constraint firstItem="joU-bh-ZZK" firstAttribute="top" secondItem="td7-Ou-YSF" secondAttribute="bottom" constant="40" id="6zw-mq-dln"/>
                             <constraint firstItem="FzK-gT-77L" firstAttribute="leading" secondItem="tbA-iD-7jq" secondAttribute="leading" constant="110" id="Btl-lz-sl3"/>
                             <constraint firstItem="pCx-bM-yBc" firstAttribute="top" secondItem="tbA-iD-7jq" secondAttribute="top" constant="50" id="EE2-Kl-hDO"/>
@@ -160,6 +159,7 @@
                             <constraint firstItem="joU-bh-ZZK" firstAttribute="leading" secondItem="YQi-es-4Gz" secondAttribute="trailing" constant="124" id="PDw-RU-7Ix"/>
                             <constraint firstItem="FzK-gT-77L" firstAttribute="top" secondItem="2Mh-wH-lLJ" secondAttribute="bottom" constant="89" id="QDS-g0-c4f"/>
                             <constraint firstItem="tbA-iD-7jq" firstAttribute="trailing" secondItem="td7-Ou-YSF" secondAttribute="trailing" constant="16" id="QPt-bR-ITQ"/>
+                            <constraint firstItem="td7-Ou-YSF" firstAttribute="top" secondItem="pCx-bM-yBc" secondAttribute="bottom" constant="40" id="ULZ-3f-eft"/>
                             <constraint firstItem="tbA-iD-7jq" firstAttribute="trailing" secondItem="2Mh-wH-lLJ" secondAttribute="trailing" constant="16" id="VdC-Og-hGS"/>
                             <constraint firstItem="YBz-Es-hIh" firstAttribute="leading" secondItem="tbA-iD-7jq" secondAttribute="leading" constant="16" id="W7v-m5-gHu"/>
                             <constraint firstItem="td7-Ou-YSF" firstAttribute="top" secondItem="pCx-bM-yBc" secondAttribute="bottom" constant="40" id="ZH2-oA-1Pa"/>
@@ -179,6 +179,10 @@
                     <navigationItem key="navigationItem" id="m3v-Ss-V1g"/>
                     <connections>
                         <outlet property="addBtn" destination="FzK-gT-77L" id="Yep-37-ybm"/>
+                        <outlet property="descTextField" destination="td7-Ou-YSF" id="bS3-JM-Qjh"/>
+                        <outlet property="nameTextField" destination="pCx-bM-yBc" id="MHm-dC-Sac"/>
+                        <outlet property="priceTextField" destination="joU-bh-ZZK" id="hNy-hJ-FYa"/>
+                        <outlet property="providerTextField" destination="2Mh-wH-lLJ" id="gMD-HT-EzT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wd7-kI-d1E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -209,7 +213,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

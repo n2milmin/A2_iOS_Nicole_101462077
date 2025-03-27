@@ -29,11 +29,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         fetchProducts()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchProducts()
+    }
+    
     func fetchProducts() {
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         
         do{
             products = try context.fetch(fetchRequest)
+            displayProducts = products
             tableView.reloadData()
         } catch {
             print("Error getting products: \(error)")
@@ -60,6 +66,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         tableView.reloadData()
     }
-    
-    
 }
