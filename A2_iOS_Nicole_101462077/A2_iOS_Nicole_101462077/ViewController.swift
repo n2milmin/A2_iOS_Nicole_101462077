@@ -16,8 +16,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var products: [Product]?
-    var displayProducts: [Product]?
+    var products: [Product] = []
+    var displayProducts: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +53,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if  searchText.isEmpty {
-            displayProducts = products.prefix(1).mao { $0 }
+            displayProducts = products
         } else {
-            displayProducts = products.filter( $0.name?.localizedCaseInsensitiveContains(searchText) == true || $0.description?.localizedCaseInsensitiveContains(searchText) == true)
+            displayProducts = products.filter{ $0.name?.localizedCaseInsensitiveContains(searchText) == true || $0.desc?.localizedCaseInsensitiveContains(searchText) == true}
         }
         tableView.reloadData()
     }
     
 }
-
