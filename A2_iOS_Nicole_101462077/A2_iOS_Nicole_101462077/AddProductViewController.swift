@@ -5,6 +5,7 @@
 //  Created by Nicole Milmine on 2025-03-27.
 //
 
+import Foundation
 import UIKit
 import CoreData
 

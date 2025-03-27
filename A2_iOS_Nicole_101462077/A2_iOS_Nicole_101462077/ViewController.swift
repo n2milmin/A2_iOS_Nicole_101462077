@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton : UIButton!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -24,10 +25,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         searchBar.delegate = self
         title = "Products"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(addProduct))
         
         fetchProducts()
     }
@@ -41,11 +38,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } catch {
             print("Error getting products: \(error)")
         }
-    }
-    
-    @objc func addProduct() {
-        let vc = AddProductViewController()
-        navigationController?.pushViewController(vc, animated: true)
     }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
